@@ -1,0 +1,21 @@
+{
+  "include": ["./src"],
+  "exclude": ["./node_modules"],
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "preserve",
+    "module": "commonjs",
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "paths": {
+      "components": ["./components"]
+    }
+  }
+}

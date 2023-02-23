@@ -1,13 +1,50 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "Bold";
+  src: url("./fonts/ShantellSans-Bold.ttf");
+}
+@font-face {
+  font-family: "BoldItalic";
+  src: url("./fonts/ShantellSans-BoldItalic.ttf");
+}
+@font-face {
+  font-family: "ExtraBoldItalic";
+  src: url("./fonts/ShantellSans-ExtraBoldItalic.ttf");
+}
+@font-face {
+  font-family: "ExtraBold";
+  src: url("./fonts/ShantellSans-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "Italic";
+  src: url("./fonts/ShantellSans-Italic.ttf");
+}
+@font-face {
+  font-family: "Light";
+  src: url("./fonts/ShantellSans-Light.ttf");
+}
+@font-face {
+  font-family: "LightItalic";
+  src: url("./fonts/ShantellSans-LightItalic.ttf");
+}
+@font-face {
+  font-family: "Medium";
+  src: url("./fonts/ShantellSans-Medium.ttf");
+}
+@font-face {
+  font-family: "Regular";
+  src: url("./fonts/ShantellSans-Regular.ttf");
 }

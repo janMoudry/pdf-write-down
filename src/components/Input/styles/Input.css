@@ -1,0 +1,40 @@
+.input_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.input_container input {
+  border: none;
+  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.4);
+  background-color: transparent;
+  transition: 0.5s;
+  width: 25vw;
+  height: 3rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: "Regular";
+}
+.input_container label {
+  font-family: "Bold";
+  font-size: 25px;
+  color: #698269;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+}
+.input_container input:focus {
+  outline: none;
+  box-shadow: 2px 4px 15px black;
+}
+@media screen and (max-width: 800px) {
+  .input_container {
+    width: 90%;
+  }
+  .input_container input {
+    width: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  .input_container input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}

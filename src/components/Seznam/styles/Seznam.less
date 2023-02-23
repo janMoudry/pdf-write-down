@@ -1,0 +1,62 @@
+.seznam {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
+
+  .items_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .item_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: min(150px, 20vw);
+      box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      border-radius: 15px;
+      padding-right: 10px;
+      padding-left: 10px;
+      transition: 1s;
+      font-family: "Light";
+
+      .seznam_plus_icon {
+        transform: rotate(45deg);
+      }
+    }
+    .item_container:focus {
+      outline: unset;
+      box-shadow: 2px 4px 15px black;
+    }
+
+    .item_container:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    .item_selected:hover {
+      background-color: #698269;
+    }
+    .item_selected {
+      background-color: #698269;
+      cursor: default;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .seznam {
+    width: 100vw;
+
+    .items_container {
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+
+      .item_container {
+        width: 50%;
+      }
+    }
+  }
+}
