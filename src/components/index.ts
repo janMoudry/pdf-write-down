@@ -4,5 +4,6 @@ import Button from "./Button";
 import Input from "./Input";
 import Seznam from "./Seznam";
 import TextArea from "./TextArea";
+import Card from "./Card";
 
-export { Header, Footer, Button, Input, Seznam, TextArea };
+export { Header, Footer, Button, Input, Seznam, TextArea, Card };
