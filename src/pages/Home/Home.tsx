@@ -7,12 +7,11 @@ const Home: React.FC = () => {
     <div className="home">
       <h1 className="main_title"> Take a note!!! </h1>
       <div className="cards_container">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card
+          title="Title"
+          description="description"
+          blocks={{ priority: "major", category: "Event", date: "17.05.2001" }}
+        />
       </div>
     </div>
   );

@@ -1,4 +1,7 @@
-export type SeznamData = Array<{ text: string; id: number }>;
+export type SeznamData = Array<{
+  text: any;
+  id: number;
+}>;
 
 interface SeznamProps {
   data: SeznamData;

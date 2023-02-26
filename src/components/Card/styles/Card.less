@@ -12,9 +12,10 @@
   position: relative;
   padding-left: 15px;
   padding-right: 15px;
+  justify-content: space-evenly;
 
   h1 {
-    color: #b99b6b;
+    color: white;
     text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     font-size: 2rem;
     font-family: "Bold";
@@ -28,11 +29,25 @@
   }
 
   p {
-    color: #b99b6b;
-    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-    font-size: 1rem;
+    color: white;
+    text-shadow: 0 0 rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
     text-align: center;
     font-family: "Italic";
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .info_blocks_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
   }
 }
 @media screen and (max-width: 800px) {

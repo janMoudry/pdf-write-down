@@ -2,6 +2,7 @@ import { Button, Input, Seznam, TextArea } from "components";
 import { SeznamData } from "components/Seznam/Seznam.types";
 import React, { useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { saveNote } from "utils/Cookies";
 import "./styles/Form.css";
 
 const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
@@ -9,6 +10,7 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
   const [selectedCPriorityID, setSelectedPriorityID] = useState(0);
   const titleInputRef = useRef<null | HTMLInputElement>(null);
   const textAreaRef = useRef<null | HTMLTextAreaElement>(null);
+  const datePickerRef = useRef<null | HTMLInputElement>(null);
 
   const setCheckBox = (id: number, name: "Category" | "Priority") => {
     switch (name) {
@@ -18,6 +20,20 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
       case "Priority":
         setSelectedPriorityID(id);
         break;
+    }
+  };
+
+  const saveData = () => {
+    if (titleInputRef.current && textAreaRef.current) {
+      saveNote({
+        title: titleInputRef.current.value,
+        description: textAreaRef.current.value,
+        priority: priorityData.find(({ id }) => selectedCPriorityID === id)
+          ?.text,
+        category: categoryData.find(({ id }) => selectedCategoryID === id)
+          ?.text,
+        date: "",
+      });
     }
   };
 
@@ -52,9 +68,7 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
       />
       <Button
         label="Save"
-        onClick={() => {
-          console.log(titleInputRef.current && titleInputRef.current.value);
-        }}
+        onClick={saveData}
         icon={<FaPlus className="button_icon" />}
       />
     </div>
