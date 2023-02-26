@@ -11,6 +11,7 @@
 .side_menu .icon {
   position: absolute;
   left: 5px;
+  top: 5px;
   transition: 1s;
   transition-delay: 1s;
   color: #aa5656;
