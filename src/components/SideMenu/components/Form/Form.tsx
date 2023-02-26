@@ -1,4 +1,4 @@
-import { Button, Input, Seznam, TextArea } from "components";
+import { Button, Input, Seznam, TextArea, DatePicker } from "components";
 import { SeznamData } from "components/Seznam/Seznam.types";
 import React, { useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa";
@@ -9,6 +9,7 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
   const [selectedCategoryID, setSelectedCategoryID] = useState(0);
   const [selectedCPriorityID, setSelectedPriorityID] = useState(0);
   const titleInputRef = useRef<null | HTMLInputElement>(null);
+  const datePickerRef = useRef<null | HTMLInputElement>(null);
   const textAreaRef = useRef<null | HTMLTextAreaElement>(null);
   const datePickerRef = useRef<null | HTMLInputElement>(null);
 
@@ -46,6 +47,7 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
         placeholder="dinner"
         inputRef={titleInputRef}
       />
+      <DatePicker datePickerRef={datePickerRef} label={"When:"} />
       <div className="seznams_container">
         <Seznam
           title="Priority"

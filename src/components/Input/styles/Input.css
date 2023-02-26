@@ -5,7 +5,7 @@
 }
 .input_container input {
   border: none;
-  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.5);
   background-color: transparent;
   transition: 0.5s;
   width: 25vw;

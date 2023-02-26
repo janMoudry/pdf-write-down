@@ -1,0 +1,26 @@
+.date_picker_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 25vw;
+}
+.date_picker_container .date_picker {
+  background-color: transparent;
+  border: none;
+  box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 15px;
+  transition: 0.5s;
+  font-family: "Regular";
+}
+.date_picker_container label {
+  font-family: "Bold";
+  font-size: 25px;
+  color: #698269;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+}
+.date_picker_container .date_picker:focus {
+  outline: none;
+  box-shadow: 4px 8px 15px #000000;
+}
