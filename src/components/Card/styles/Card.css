@@ -19,10 +19,16 @@
   font-size: 2rem;
   font-family: "Bold";
 }
-.card_container .icon {
+.card_container .icon_zoom {
   position: absolute;
   top: 5%;
   left: 5%;
+  cursor: pointer;
+}
+.card_container .icon_trash {
+  position: absolute;
+  top: 5%;
+  right: 5%;
   cursor: pointer;
 }
 .card_container p {

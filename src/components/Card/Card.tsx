@@ -1,5 +1,7 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
+import { AppContext } from "contexts/useOpenEditContext";
+import React, { useContext } from "react";
+import { FaSearch, FaTrash } from "react-icons/fa";
+import { deleteOneNote } from "utils/Cookies";
 import CardProps from "./Card.types";
 import InfoBlock from "./components/InfoBlock";
 import "./styles/Card.css";
@@ -12,7 +14,12 @@ const Card: React.FC<CardProps> = ({
   return (
     <div className="card_container">
       <h1>{title.toUpperCase()}</h1>
-      <FaSearch className="icon" size={30} />
+      <FaSearch className="icon_zoom" size={30} />
+      <FaTrash
+        className="icon_trash"
+        size={30}
+        onClick={() => deleteOneNote(title)}
+      />
       <div className="info_blocks_container">
         <InfoBlock text={priority} />
         <InfoBlock text={category} />

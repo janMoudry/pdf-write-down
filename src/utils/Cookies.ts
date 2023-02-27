@@ -1,4 +1,5 @@
 import Cookie from "js-cookie";
+import React, { SetStateAction } from "react";
 
 export const saveNote = (data: CookiesData) => {
   const cookieData = getNotes();
@@ -31,4 +32,17 @@ export type CookiesData = {
 
 export const clearAllCookies = () => {
   Cookie.remove("notes");
+};
+
+export const deleteOneNote = (currentTitle: string) => {
+  const savedData = getNotes();
+
+  if (savedData) {
+    const newData = JSON.parse(savedData).filter(
+      ({ title }: { title: string }) => title !== currentTitle,
+    );
+    Cookie.set("notes", JSON.stringify(newData));
+
+    window.location.reload();
+  }
 };
