@@ -5,7 +5,7 @@ import "./styles/DatePicker.css";
 const DatePicker: React.FC<DatePickerProps> = ({ datePickerRef, label }) => (
   <div className="date_picker_container">
     <label> {label} </label>
-    <input className="date_picker" type={"date"} />
+    <input ref={datePickerRef} className="date_picker" type={"date"} />
   </div>
 );
 

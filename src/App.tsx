@@ -3,13 +3,16 @@ import "./App.css";
 import Home from "pages/Home";
 import { Footer, Header } from "components";
 import SideMenu from "components/SideMenu";
+import OpenEditContext from "contexts/useOpenEditContext";
 
 const App: React.FC = () => (
   <div className="app">
-    <Header />
-    <Home />
-    <SideMenu />
-    <Footer />
+    <OpenEditContext>
+      <Header />
+      <Home />
+      <SideMenu />
+      <Footer />
+    </OpenEditContext>
   </div>
 );
 

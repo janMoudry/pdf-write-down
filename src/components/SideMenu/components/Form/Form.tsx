@@ -5,13 +5,12 @@ import { FaPlus } from "react-icons/fa";
 import { saveNote } from "utils/Cookies";
 import "./styles/Form.css";
 
-const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+const Form: React.FC<{ isOpen: boolean; close: any }> = ({ isOpen, close }) => {
   const [selectedCategoryID, setSelectedCategoryID] = useState(0);
   const [selectedCPriorityID, setSelectedPriorityID] = useState(0);
   const titleInputRef = useRef<null | HTMLInputElement>(null);
   const datePickerRef = useRef<null | HTMLInputElement>(null);
   const textAreaRef = useRef<null | HTMLTextAreaElement>(null);
-  const datePickerRef = useRef<null | HTMLInputElement>(null);
 
   const setCheckBox = (id: number, name: "Category" | "Priority") => {
     switch (name) {
@@ -25,7 +24,9 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
   };
 
   const saveData = () => {
-    if (titleInputRef.current && textAreaRef.current) {
+    if (titleInputRef.current && textAreaRef.current && datePickerRef.current) {
+      const date: Date = new Date(datePickerRef.current.value);
+
       saveNote({
         title: titleInputRef.current.value,
         description: textAreaRef.current.value,
@@ -33,9 +34,10 @@ const Form: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
           ?.text,
         category: categoryData.find(({ id }) => selectedCategoryID === id)
           ?.text,
-        date: "",
+        date: `${date.getDate()} ${date.getMonth() + 1} ${date.getFullYear()}`,
       });
     }
+    close();
   };
 
   return (

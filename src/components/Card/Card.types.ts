@@ -1,7 +1,7 @@
 interface CardProps {
   title: string;
   blocks: {
-    priority: "major" | "minor" | "Regular";
+    priority: "Major" | "Minor" | "Regular";
     category: "Note" | "Meeting" | "Task" | "Event";
     date: string;
   };
