@@ -1,14 +1,8 @@
 import Cookie from "js-cookie";
-import React, { SetStateAction } from "react";
 
 export const saveNote = (data: CookiesData) => {
   const cookieData = getNotes();
 
-  //   if (cookieData) {
-  //     console.log(JSON.parse(cookieData));
-  //   }
-
-  //@ts-ignore
   if (cookieData) {
     Cookie.set(
       "notes",
@@ -32,6 +26,7 @@ export type CookiesData = {
 
 export const clearAllCookies = () => {
   Cookie.remove("notes");
+  window.location.reload();
 };
 
 export const deleteOneNote = (currentTitle: string) => {
