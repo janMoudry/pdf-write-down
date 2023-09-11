@@ -12,9 +12,17 @@ const App = () => {
   }>({ width: 0, height: 0 });
   const [numebrOfPages, setNumberOfPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [scale, setScale] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSigningDown, setIsSigningDown] = useState<boolean>(false);
+  const [vectors, setVectors] = useState<{ x: number; y: number }[]>([]);
 
-  const [widthOfSignatures, setWidthOfSignatures] = useState<number>(100);
-  const [heightOfSignatures, setHeightOfSignatures] = useState<number>(100);
+  const [widthOfSignatures, setWidthOfSignatures] = useState<number>(
+    50 * scale,
+  );
+  const [heightOfSignatures, setHeightOfSignatures] = useState<number>(
+    50 * scale,
+  );
 
   const [style, setStyle] = useState<CSSProperties>({
     width: `${widthOfSignatures}px`,
@@ -22,7 +30,7 @@ const App = () => {
     position: "absolute",
     top: "0",
     left: "0",
-    outline: "5px dotted black",
+    outline: "2px dotted black",
   });
 
   useEffect(() => {
@@ -31,8 +39,7 @@ const App = () => {
         setNumberOfPages(pdf.numPages);
 
         pdf.getPage(currentPage).then((page) => {
-          const scale = 1.5;
-          const viewport = page.getViewport({ scale: scale });
+          const viewport = page.getViewport({ scale });
           const canvas = document.getElementById("canvas") as HTMLCanvasElement;
           const context = canvas.getContext("2d") as CanvasRenderingContext2D;
           canvas.height = viewport.height;
@@ -51,7 +58,7 @@ const App = () => {
         });
       });
     }
-  }, [file, currentPage]);
+  }, [file, currentPage, scale]);
 
   const handleDrag = (e: React.DragEvent<HTMLInputElement>) => {};
 
@@ -61,7 +68,8 @@ const App = () => {
     const { pageX, pageY } = e;
 
     const offsetX = window.innerWidth / 2 - fileDimensions.width / 2;
-    const offsetY = window.innerHeight / 2 - fileDimensions.height / 2;
+    const offsetY =
+      document.documentElement.scrollHeight / 2 - fileDimensions.height / 2;
 
     let x = pageX - offsetX - widthOfSignatures;
     let y = pageY - offsetY - heightOfSignatures;
@@ -79,6 +87,70 @@ const App = () => {
       left: `${x}px`,
     }));
   };
+
+  useEffect(() => {
+    setWidthOfSignatures(50 * scale);
+    setHeightOfSignatures(50 * scale);
+    setStyle((prevState) => ({
+      ...prevState,
+      left: 0,
+      top: 0,
+      width: `${50 * scale}px`,
+      height: `${50 * scale}px`,
+    }));
+  }, [scale]);
+
+  const handleSignDownDocument = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSignDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const { pageX, pageY } = e;
+
+    setVectors((prevState) => [
+      ...prevState,
+      {
+        x: pageX,
+        y: pageY,
+      },
+    ]);
+  };
+
+  const handleSignDownCapture = () => {
+    setIsSigningDown(true);
+  };
+  const handleSignDownCaptureStop = () => {
+    setIsSigningDown(false);
+  };
+
+  // draw signature
+  useEffect(() => {
+    if (vectors.length === 0) return;
+    const timeout = setTimeout(() => {
+      const canvas = document.getElementById("signature") as HTMLCanvasElement;
+      const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      context.beginPath();
+      context.moveTo(vectors[0].x, vectors[0].y);
+      context.strokeStyle = "black";
+      context.lineWidth = 2;
+
+      for (let i = 1; i < vectors.length; i++) {
+        context.lineTo(vectors[i].x, vectors[i].y);
+      }
+      context.stroke();
+
+      console.log(context);
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [vectors]);
 
   return (
     <div className="app">
@@ -118,6 +190,24 @@ const App = () => {
         >
           {">"}
         </button>
+        <div>
+          <button
+            onClick={() => setScale((prevState) => prevState - 0.1)}
+            disabled={scale <= 0.5}
+          >
+            -
+          </button>
+          <button onClick={() => setScale(1)}> default </button>
+          <button
+            onClick={() => setScale((prevState) => prevState + 0.1)}
+            disabled={scale >= 1.5}
+          >
+            +
+          </button>
+        </div>
+        <button onClick={handleSignDownDocument} disabled={!Boolean(file)}>
+          Podepsat
+        </button>
       </section>
 
       {Boolean(file) && (
@@ -136,6 +226,24 @@ const App = () => {
           />
         </div>
       )}
+      <div
+        className="modal"
+        style={{
+          display: isModalOpen ? "block" : "block",
+        }}
+      >
+        <button onClick={handleCloseModal} className="close">
+          X
+        </button>
+        <div className="signature">
+          <canvas
+            id="signature"
+            onMouseDown={handleSignDownCapture}
+            onMouseUp={handleSignDownCaptureStop}
+            onMouseMove={isSigningDown ? handleSignDown : () => {}}
+          ></canvas>
+        </div>
+      </div>
     </div>
   );
 };
