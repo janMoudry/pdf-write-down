@@ -15,12 +15,18 @@
   min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 50px;
 }
 
-.app > input[type="file"] {
+.controls {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+.app > .controls > input[type="file"] {
   color: white;
 }
 
@@ -61,7 +67,7 @@ section {
   border: unset;
 }
 
-.signature {
+.signature-container {
   width: 25%;
   aspect-ratio: 1;
   background-color: white;
