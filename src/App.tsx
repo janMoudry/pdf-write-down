@@ -66,11 +66,14 @@ const App = () => {
   const handleDrop = (e: React.DragEvent<HTMLInputElement>) => {
     e.preventDefault();
 
+    if (!style) return;
+
     const { pageX, pageY } = e;
 
-    const offsetX = window.innerWidth / 2 - fileDimensions.width / 2;
+    const offsetX = window.innerWidth / 2 - fileDimensions.width / 2 / scale;
     const offsetY =
-      document.documentElement.scrollHeight / 2 - fileDimensions.height / 2;
+      document.documentElement.scrollHeight / 2 -
+      fileDimensions.height / 2 / scale;
 
     let x = pageX - offsetX - widthOfSignatures * 1.5;
     let y = pageY - offsetY - heightOfSignatures / 2;
@@ -84,8 +87,8 @@ const App = () => {
 
     setStyle((prevState) => ({
       ...prevState,
-      top: `${y * scale}px`,
-      left: `${x * scale}px`,
+      top: `${y}px`,
+      left: `${x}px`,
     }));
   };
 
@@ -94,8 +97,8 @@ const App = () => {
     setHeightOfSignatures(50 * scale);
     setStyle((prevState) => ({
       ...prevState,
-      left: "50%",
-      top: "50%",
+      top: "0px",
+      left: "0px",
       width: `${50 * scale}px`,
       height: `${50 * scale}px`,
     }));
